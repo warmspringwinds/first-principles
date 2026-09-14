@@ -1,0 +1,10 @@
+
+read_verilog ds_glue4.v
+hierarchy -top glue4
+proc; opt; wreduce; opt_clean
+write_json ds_glue4_generic.json
+synth -top glue4
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json ds_glue4_mapped.json

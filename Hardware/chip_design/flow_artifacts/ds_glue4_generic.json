@@ -1,0 +1,211 @@
+{
+  "creator": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "modules": {
+    "glue4": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "ds_glue4.v:1.1-5.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "acc0": {
+          "direction": "input",
+          "bits": [ 4, 5, 6, 7 ]
+        },
+        "acc1": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11 ]
+        },
+        "acc2": {
+          "direction": "input",
+          "bits": [ 12, 13, 14, 15 ]
+        },
+        "acc3": {
+          "direction": "input",
+          "bits": [ 16, 17, 18, 19 ]
+        },
+        "sum": {
+          "direction": "output",
+          "bits": [ 20, 21, 22, 23, 24, 25 ]
+        }
+      },
+      "cells": {
+        "$add$ds_glue4.v:4$3": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000101"
+          },
+          "attributes": {
+            "src": "ds_glue4.v:4.43-4.54"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, 5, 6, 7 ],
+            "B": [ 8, 9, 10, 11 ],
+            "Y": [ 26, 27, 28, 29, 30 ]
+          }
+        },
+        "$add$ds_glue4.v:4$4": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000101",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000110"
+          },
+          "attributes": {
+            "src": "ds_glue4.v:4.43-4.61"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 26, 27, 28, 29, 30 ],
+            "B": [ 12, 13, 14, 15 ],
+            "Y": [ 31, 32, 33, 34, 35, 36 ]
+          }
+        },
+        "$add$ds_glue4.v:4$5": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000110",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000100",
+            "Y_WIDTH": "00000000000000000000000000000110"
+          },
+          "attributes": {
+            "src": "ds_glue4.v:4.43-4.68"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 31, 32, 33, 34, 35, 36 ],
+            "B": [ 16, 17, 18, 19 ],
+            "Y": [ 37, 38, 39, 40, 41, 42 ]
+          }
+        },
+        "$procdff$10": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000110"
+          },
+          "attributes": {
+            "src": "ds_glue4.v:3.5-4.69"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 37, 38, 39, 40, 41, 42 ],
+            "Q": [ 20, 21, 22, 23, 24, 25 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\sum[5:0]": {
+          "hide_name": 1,
+          "bits": [ 37, 38, 39, 40, 41, 42 ],
+          "attributes": {
+            "src": "ds_glue4.v:3.5-4.69"
+          }
+        },
+        "$add$ds_glue4.v:4$3_Y": {
+          "hide_name": 1,
+          "bits": [ 26, 27, 28, 29, 30 ],
+          "attributes": {
+          }
+        },
+        "$add$ds_glue4.v:4$4_Y": {
+          "hide_name": 1,
+          "bits": [ 31, 32, 33, 34, 35, 36 ],
+          "attributes": {
+            "src": "ds_glue4.v:4.43-4.61"
+          }
+        },
+        "acc0": {
+          "hide_name": 0,
+          "bits": [ 4, 5, 6, 7 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.66-1.70"
+          }
+        },
+        "acc1": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.89-1.93"
+          }
+        },
+        "acc2": {
+          "hide_name": 0,
+          "bits": [ 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.112-1.116"
+          }
+        },
+        "acc3": {
+          "hide_name": 0,
+          "bits": [ 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.135-1.139"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.26-1.29"
+          }
+        },
+        "rst_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "ds_glue4.v:1.42-1.47"
+          }
+        },
+        "sum": {
+          "hide_name": 0,
+          "bits": [ 20, 21, 22, 23, 24, 25 ],
+          "attributes": {
+            "src": "ds_glue4.v:2.22-2.25"
+          }
+        }
+      }
+    }
+  }
+}

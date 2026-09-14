@@ -1,0 +1,10 @@
+
+read_verilog ds_tile4.v
+hierarchy -top tile4
+proc; opt; wreduce; opt_clean
+write_json ds_tile4_generic.json
+synth -top tile4
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json ds_tile4_mapped.json

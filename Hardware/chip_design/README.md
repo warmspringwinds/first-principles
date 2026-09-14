@@ -11,7 +11,7 @@ every wire of.
 | read this if you want | notebook |
 |---|---|
 | The concepts, from physics up: why gates have delay, why registers exist, what synthesis, placement and routing compute, what Synopsys/Cadence/Siemens sell, what the open-source stack can do, why chiplets exist, what a 2 nm wafer costs — every claim either derived in a runnable cell or read out of a real standard-cell library | [`hardware_design_from_first_principles.ipynb`](hardware_design_from_first_principles.ipynb) |
-| The process, watched: one 4-bit multiply-accumulate unit pushed through RTL → simulation → synthesis → floorplan → placement → clock tree → routing → extraction → signoff timing → power → LVS/DRC → GDSII, with the artifact of every stage drawn; then timing closure (ECOs, then pipelining), and a section on **PPA estimation** — from which stage the numbers can be predicted, how precisely, measured on a dataset of RTL variants against the flow's own noise floor | [`rtl_to_gds_visualized.ipynb`](rtl_to_gds_visualized.ipynb) |
+| The process, watched: one 4-bit multiply-accumulate unit pushed through RTL → simulation → synthesis → floorplan → placement → clock tree → routing → extraction → signoff timing → power → LVS/DRC → GDSII, with the artifact of every stage drawn; then timing closure (ECOs, then pipelining), and a section on **PPA estimation** — why it is done, from which stage the numbers can be predicted and how precisely (measured on a dataset of RTL variants against the flow's own noise floor), and module-level vs tile-level estimation, demonstrated on a mini-tile | [`rtl_to_gds_visualized.ipynb`](rtl_to_gds_visualized.ipynb) |
 
 The second notebook is the one to open if you want to *see* a chip being made; the first
 explains why each stage exists and what it costs at scale. Both are inspired by
@@ -63,6 +63,13 @@ what makes the seed-to-seed noise floor in the PPA-estimation section a real mea
   on word-level RTL features predicts area to 3%, power to 15% and fmax to 19% — timing is
   the hard target, and the one miss is traced to a hand-written operator delay model, which
   is why real RTL-stage models learn from the bit-level graph.
+- **Module vs tile, demonstrated**: four `mac2` modules plus a reduction adder tree form a
+  206-cell mini-tile that runs at 1271 MHz where the module alone runs at 2053. A hierarchical
+  roll-up (4 × the module + the glue synthesized on its own) accounts for the cells and area
+  exactly and still misses the tile — fmax by 28%, power by 11%, wirelength by 58% — because
+  the critical path crosses a module boundary, the modules' own internal nets stretch 2.6×
+  once placed among neighbours, and one clock tree spans everything. That residual is what
+  tile-level estimation is about; the modules are the easy part.
 - **The label-noise floor**: the same RTL through the same flow with four placement seeds
   moves fmax by 1.6% and power by 1.1%. An estimator that "beats" this is fitting the seed.
 
