@@ -76,6 +76,12 @@ what makes the seed-to-seed noise floor in the PPA-estimation section a real mea
   flow runs, yet its sign-of-slack calls within ±10% of a target are a coin flip until wires are
   known. In a surrogate-guided search for the best throughput under an area budget, either ranker
   finds the true best in one flow run; random order needs all fourteen.
+- **Inside a company, the flow's own reports are the best features**: a two-feature "delta"
+  model on top of the post-synthesis report predicts signoff fmax to 4% where RTL features alone
+  manage 19%; on the placement report, 0.6%. And the archive's final reports are *censored*:
+  closing every design the way a project does (sizing, then negotiating the target) leaves every
+  archived WNS at a small positive number that predicts nothing (r = +0.33 with the RTL depth
+  feature, versus −0.83 for the first P&R snapshot and +0.81 for the target the project settled on).
 - **The label-noise floor**: the same RTL through the same flow with four placement seeds
   moves fmax by 1.6% and power by 1.1%. An estimator that "beats" this is fitting the seed.
 

@@ -1,0 +1,10 @@
+
+read_verilog cfg_3.v
+hierarchy -top mac4
+proc; opt; wreduce; opt_clean
+write_json cfg_3_generic.json
+synth -top mac4
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json cfg_3_mapped.json
