@@ -1,0 +1,10 @@
+
+read_verilog ds_mac4p.v
+hierarchy -top mac4p
+proc; opt; wreduce; opt_clean
+write_json ds_mac4p_generic.json
+synth -top mac4p
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json ds_mac4p_mapped.json

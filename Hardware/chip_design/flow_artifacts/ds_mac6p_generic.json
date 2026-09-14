@@ -1,0 +1,299 @@
+{
+  "creator": "Yosys 0.68+post (git sha1 c12172fbae8af5e20f6fb52e3d4e92d56ed587b6, Release, AppleClang clang++ 21.0.0.21000101)",
+  "modules": {
+    "mac6p": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "ds_mac6p.v:1.1-11.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "rst_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "clear": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "en": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9, 10, 11 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 12, 13, 14, 15, 16, 17 ]
+        },
+        "acc": {
+          "direction": "output",
+          "bits": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+        }
+      },
+      "cells": {
+        "$add$ds_mac6p.v:9$6": {
+          "hide_name": 1,
+          "type": "$add",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000001100",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000001100",
+            "Y_WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "ds_mac6p.v:9.32-9.42"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ],
+            "B": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ],
+            "Y": [ 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ]
+          }
+        },
+        "$auto$ff.cc:337:slice$22": {
+          "hide_name": 1,
+          "type": "$adffe",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000000000000",
+            "CLK_POLARITY": "00000000000000000000000000000001",
+            "EN_POLARITY": "00000000000000000000000000000001",
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "ds_mac6p.v:6.5-10.8"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "EN": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65 ],
+            "EN": [ 66 ],
+            "Q": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+          }
+        },
+        "$auto$opt_dff.cc:320:make_patterns_logic$24": {
+          "hide_name": 1,
+          "type": "$reduce_bool",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000010",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 4, 5 ],
+            "Y": [ 66 ]
+          }
+        },
+        "$mul$ds_mac6p.v:5$3": {
+          "hide_name": 1,
+          "type": "$mul",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000110",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000110",
+            "Y_WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "ds_mac6p.v:5.45-5.50"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, 7, 8, 9, 10, 11 ],
+            "B": [ 12, 13, 14, 15, 16, 17 ],
+            "Y": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78 ]
+          }
+        },
+        "$procdff$21": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "00000000000000000000000000000000",
+            "ARST_VALUE": "000000000000",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "ds_mac6p.v:4.5-5.51"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 3 ],
+            "CLK": [ 2 ],
+            "D": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78 ],
+            "Q": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ]
+          }
+        },
+        "$procmux$10": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "ds_mac6p.v:8.18-8.23|ds_mac6p.v:8.14-9.43"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90 ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 4 ],
+            "Y": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65 ]
+          }
+        },
+        "$procmux$7": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001100"
+          },
+          "attributes": {
+            "src": "ds_mac6p.v:9.18-9.20|ds_mac6p.v:9.14-9.43"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" ],
+            "B": [ 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ],
+            "S": [ 5 ],
+            "Y": [ 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\acc[11:0]": {
+          "hide_name": 1,
+          "bits": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65 ],
+          "attributes": {
+            "src": "ds_mac6p.v:6.5-10.8"
+          }
+        },
+        "$0\\prod[11:0]": {
+          "hide_name": 1,
+          "bits": [ 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78 ],
+          "attributes": {
+            "src": "ds_mac6p.v:4.5-5.51"
+          }
+        },
+        "$add$ds_mac6p.v:9$6_Y": {
+          "hide_name": 1,
+          "bits": [ 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 ],
+          "attributes": {
+            "src": "ds_mac6p.v:9.32-9.42"
+          }
+        },
+        "$auto$opt_dff.cc:319:make_patterns_logic$23": {
+          "hide_name": 1,
+          "bits": [ 66 ],
+          "attributes": {
+          }
+        },
+        "$procmux$7_Y": {
+          "hide_name": 1,
+          "bits": [ 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90 ],
+          "attributes": {
+          }
+        },
+        "a": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9, 10, 11 ],
+          "attributes": {
+            "src": "ds_mac6p.v:2.22-2.23"
+          }
+        },
+        "acc": {
+          "hide_name": 0,
+          "bits": [ 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ],
+          "attributes": {
+            "src": "ds_mac6p.v:2.63-2.66"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "ds_mac6p.v:2.42-2.43"
+          }
+        },
+        "clear": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "ds_mac6p.v:1.60-1.65"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "ds_mac6p.v:1.26-1.29"
+          }
+        },
+        "en": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "ds_mac6p.v:1.78-1.80"
+          }
+        },
+        "prod": {
+          "hide_name": 0,
+          "bits": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ],
+          "attributes": {
+            "src": "ds_mac6p.v:3.17-3.21"
+          }
+        },
+        "rst_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "ds_mac6p.v:1.42-1.47"
+          }
+        }
+      }
+    }
+  }
+}

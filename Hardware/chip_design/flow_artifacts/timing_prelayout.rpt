@@ -1,0 +1,29 @@
+=== pre-layout ===
+Startpoint: b[3]   Endpoint: U127/D
+Clock: clk, period 1000 ps
+
+point                              incr (ps)  path (ps) slew (ps)
+input external delay                   100.0      100.0          
+U18 (AND4_X1) -> n40                    75.0      175.0      22.9
+U20 (OR3_X1) -> n42                     87.9      263.0      14.3
+U22 (AND3_X1) -> n44                    56.9      319.8      19.2
+U25 (OR3_X1) -> n47                     82.5      402.3      14.3
+U27 (AND3_X1) -> n49                    52.2      454.6      15.8
+U30 (OR3_X1) -> n52                     87.9      542.5      17.3
+U86 (AND2_X1) -> n108                   40.1      582.6      13.2
+U90 (XOR2_X1) -> n112                   64.1      646.7      37.0
+U92 (AOI21_X1) -> n114                  60.4      707.1      37.4
+U95 (OAI21_X1) -> n117                  50.9      758.1      30.4
+U110 (AOI21_X1) -> n132                 43.5      801.5      25.3
+U114 (XNOR2_X1) -> n136                 45.1      846.6      12.7
+U115 (OAI21_X1) -> n137                 25.2      871.8      15.8
+
+data arrival time                                 871.8          
+
+clock edge                            1000.0     1000.0          
+clock network latency (capture)          0.0     1000.0          
+library setup time                     -33.9      966.1          
+data required time                                966.1          
+slack                                             +94.2       MET
+
+WNS = +94.2 ps   TNS = +0.0 ps   endpoints = 16

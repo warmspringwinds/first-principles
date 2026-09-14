@@ -1,0 +1,5 @@
+
+read_verilog mac4.v
+hierarchy -top mac4
+proc; opt; wreduce; opt_clean          # processes -> muxes/flops; constant folding; width reduction
+write_json generic.json

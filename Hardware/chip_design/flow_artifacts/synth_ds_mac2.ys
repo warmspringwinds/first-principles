@@ -1,0 +1,10 @@
+
+read_verilog ds_mac2.v
+hierarchy -top mac2
+proc; opt; wreduce; opt_clean
+write_json ds_mac2_generic.json
+synth -top mac2
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json ds_mac2_mapped.json

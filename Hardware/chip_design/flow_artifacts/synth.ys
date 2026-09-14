@@ -1,0 +1,9 @@
+
+read_verilog mac4.v
+hierarchy -top mac4
+synth -top mac4                                   # elaborate, expand operators to bits, optimize (AIG)
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib   # map flops to library flops (DFFR = w/ reset)
+abc -liberty NangateOpenCellLibrary_typical.lib         # ABC: technology-map the logic to Nangate45 cells
+opt_clean -purge
+write_json mapped.json
+write_verilog -noattr mapped.v

@@ -1,0 +1,10 @@
+
+read_verilog noise_seed4.v
+hierarchy -top mac4
+proc; opt; wreduce; opt_clean
+write_json noise_seed4_generic.json
+synth -top mac4
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json noise_seed4_mapped.json

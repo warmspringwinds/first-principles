@@ -1,0 +1,31 @@
+=== post-route ===
+Startpoint: b[3]   Endpoint: U127/D
+Clock: clk, period 1000 ps
+
+point                              incr (ps)  path (ps) slew (ps)
+clock network latency (I/O ref)         92.2       92.2          
+input external delay                   100.0      192.2          
+b[3] (input port) -> b[3]                1.0      193.3      20.0
+U18 (AND4_X1) -> n40                    85.3      278.5      30.3
+U20 (OR3_X1) -> n42                     92.3      370.8      15.1
+U23 (AOI21_X1) -> n45                   60.6      431.4      47.5
+U25 (OR3_X1) -> n47                     98.0      529.4      15.4
+U27 (AND3_X1) -> n49                    58.1      587.5      19.7
+U30 (OR3_X1) -> n52                     96.4      683.9      21.6
+U86 (AND2_X1) -> n108                   45.7      729.6      16.9
+U90 (XOR2_X1) -> n112                   76.5      806.0      47.1
+U92 (AOI21_X1) -> n114                  70.7      876.7      42.8
+U95 (OAI21_X1) -> n117                  60.1      936.8      36.2
+U110 (AOI21_X1) -> n132                 51.2      988.0      29.5
+U114 (XNOR2_X1) -> n136                 48.4     1036.4      14.0
+U115 (OAI21_X1) -> n137                 27.0     1063.4      16.9
+
+data arrival time                                1063.4          
+
+clock edge                            1000.0     1000.0          
+clock network latency (capture)         93.0     1093.0          
+library setup time                     -34.4     1058.6          
+data required time                               1058.6          
+slack                                              -4.8  VIOLATED
+
+WNS = -4.8 ps   TNS = -4.8 ps   endpoints = 16

@@ -1,0 +1,10 @@
+
+read_verilog ds_acc8.v
+hierarchy -top acc8
+proc; opt; wreduce; opt_clean
+write_json ds_acc8_generic.json
+synth -top acc8
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+abc -liberty NangateOpenCellLibrary_typical.lib
+opt_clean -purge
+write_json ds_acc8_mapped.json
