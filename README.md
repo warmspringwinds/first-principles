@@ -22,7 +22,8 @@ Every notebook here follows the same discipline:
 
 ## Contents
 
-Notebooks are grouped by field: `ML/` for machine learning, `Hardware/` for chip design.
+Notebooks are grouped by field: `ML/` for machine learning, `Hardware/` for chip design,
+`Software/` for software correctness.
 
 ### `ML/outlier_detection/` — open-set classification
 
@@ -45,6 +46,16 @@ the outcome?
 | [`hardware_design_from_first_principles.ipynb`](Hardware/chip_design/hardware_design_from_first_principles.ipynb) | The concepts from physics up: transistors and CMOS, gate delay from RC, a static timing analyzer in 30 lines, pipelining, power and the end of Dennard scaling, every stage of the design flow and why it exists, what Synopsys / Cadence / Siemens actually sell, the open-source stack, yield math and why chiplets exist, Moore's law and who can afford 2 nm — anchored to a real standard-cell library and to the kimi-chip iteration history. |
 | [`rtl_to_gds_visualized.ipynb`](Hardware/chip_design/rtl_to_gds_visualized.ipynb) | The process, watched: one 4-bit multiply-accumulate block through RTL → simulation → synthesis → floorplan → placement → clock tree → routing → extraction → signoff timing → power → LVS/DRC → GDSII, with every intermediate artifact drawn. Real Yosys and Icarus Verilog where they exist, readable toy Python where the real tools are proprietary. Ends with timing closure (ECOs, then pipelining), **PPA estimation** — from which stage the numbers can be predicted and how precisely, measured across a dataset of RTL variants against the flow's own noise floor, module vs tile, rank vs regress — and a chapter on building an estimator inside a chip company from its flow, its archive and its design lineages. |
 
+### `Software/formal_verification/` — from tests to proofs
+
+You write a function and its tests pass. But a test checks one input, and a function of
+two 32-bit arguments has 2⁶⁴. How does a machine reason about every input at once, and
+what has that actually bought?
+
+| notebook | what's inside |
+|---|---|
+| [`formal_verification_from_first_principles.ipynb`](Software/formal_verification/formal_verification_from_first_principles.ipynb) | The field built from logic up, one readable toy per technique, each cross-checked against an independent oracle: why a clean test run bounds a bug's density but never its existence, specs and the over- vs under-approximation shape of every verifier, a CDCL SAT solver with proof certificates and Haken's pigeonhole bound measured, bit-blasting and SMT, symbolic execution, BMC and fuzzing, a weakest-precondition verifier, separation logic and SMT triggers, explicit-state model checking under SC and x86-TSO, k-induction and IC3, interval and octagon abstract interpretation, an LCF kernel whose theorems Python lets you forge and the independent re-checker that catches them — then what has actually been verified, with TimSort's stack bug replayed, the economics of verified code, and LLM provers with the checker as the reviewer (simulated proposers; published LLM results tabulated). Z3 is the one real tool. |
+
 More topics will land as their folders appear.
 
 ## Running the notebooks
@@ -52,11 +63,13 @@ More topics will land as their folders appear.
 Reading requires nothing — all outputs are embedded. To re-execute:
 
 ```
-pip install numpy scipy scikit-learn matplotlib torch jupyterlab
+pip install numpy scipy scikit-learn matplotlib torch jupyterlab z3-solver
 ```
 
 The hardware flow notebook additionally uses two open-source tools when available
 (`brew install yosys icarus-verilog`; it falls back to saved artifacts without them).
+The formal-verification notebook needs Python 3.12 or newer, and uses `z3-solver` when
+available (it falls back to toy solvers, or a one-line skip, without it).
 
 Each notebook is self-contained (no imports across notebooks, no external data beyond a
 standard-cell library that the hardware flow downloads on first run) and runs top to
